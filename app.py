@@ -18,4 +18,4 @@ def calculate():
         return jsonify({"result": "error"})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
