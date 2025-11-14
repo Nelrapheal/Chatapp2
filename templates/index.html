@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask Calculator</title>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="display" placeholder="0" id="text" readonly>
+    <div class="buttons">
+      <button id="numbers" onclick="press('7')">7</button>
+      <button id="numbers" onclick="press('8')">8</button>
+      <button id="numbers" onclick="press('9')">9</button>
+      <button id="operators" onclick="press('/')" class="operator">&divide;</button>
+
+      <button id="numbers" onclick="press('4')">4</button>
+      <button id="numbers" onclick="press('5')">5</button>
+      <button id="numbers" onclick="press('6')">6</button>
+      <button id="operators" onclick="press('*')" class="operator">X</button>
+
+      <button id="numbers" onclick="press('1')">1</button>
+      <button id="numbers" onclick="press('2')">2</button>
+      <button id="numbers" onclick="press('3')">3</button>
+      <button id="operators" onclick="press('-')" class="operator">-</button>
+
+      <button id="numbers" onclick="press('0')" class="zero">0</button>
+      <button onclick="press('.')">.</button>
+      <button id="operators" onclick="press('+')" class="operator">+</button>
+
+      <button id="operators" onclick="press('=')" class="operator">=</button>
+      <button id="operators" onclick="clearbtn()" class="operator">C</button>
+    </div>
+  </div>
+  <script src="{{url_for('static', filename='index.js')}}"></script>
+</body>
+</html>
