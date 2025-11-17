@@ -1,21 +1,31 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, send, join_room
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
+# Home page
 @app.route('/')
-def home():
-    return render_template("index.html")
+def index():
+    return render_template('index.html')
 
-@app.route('/calculate', methods=['POST'])
-def calculate():
-    data = request.get_json()
-    exp = data.get("expression", "")
+# Join a room
+@socketio.on('join')
+def handle_join(data):
+    username = data['username']
+    room = data['room']
+    join_room(room)
+    send(f"{username} has joined the chat.", to=room)
 
-    try:
-        result = eval(exp)
-        return jsonify({"result": result})
-    except:
-        return jsonify({"result": "error"})
+# Private message to a room
+@socketio.on('private_message')
+def handle_private_message(data):
+    room = data['room']
+    msg = data['msg']
+    sender = data['sender']
+    # Send message to room
+    send({'msg': msg, 'sender': sender}, to=room)
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    socketio.run(app)
