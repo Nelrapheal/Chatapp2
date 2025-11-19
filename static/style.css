@@ -1,4 +1,4 @@
-    /* ---------- Global ---------- */
+
     *{
         padding: 0;
         margin: 0;
@@ -21,7 +21,6 @@
         margin-top: 20px;
     }
 
-    /* ---------- Sidebar ---------- */
     .sidebar {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 20px;
@@ -55,7 +54,6 @@
         color: #000;
     }
 
-    /* ---------- Chat Area ---------- */
     .chat-area {
         background: rgba(255,255,255,0.05);
         border-radius: 20px;
@@ -121,7 +119,7 @@
         box-shadow: 0 0 25px #ff00ff;
     }
 
-    /* ---------- Input Area ---------- */
+
     .input-area {
         display: flex;
         margin-top: 15px;
@@ -157,7 +155,7 @@
         transform: scale(1.05);
     }
 
-    /* ---------- Right Sidebar ---------- */
+
     .right-sidebar {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 20px;
