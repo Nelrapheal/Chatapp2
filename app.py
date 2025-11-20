@@ -1,10 +1,10 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, join_room, leave_room
+import os  # Added for getting PORT from environment
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
-
+socketio = SocketIO(app)  # Keep your existing SocketIO setup
 
 @app.route('/')
 def index():
@@ -36,4 +36,6 @@ def handle_private_message(data):
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    # Use Render's PORT environment variable if available
+    port = int(os.environ.get("PORT", 5000))
+    socketio.run(app, host='0.0.0.0', port=port)
