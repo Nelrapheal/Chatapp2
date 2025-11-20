@@ -1,10 +1,25 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, join_room, leave_room
 import os  # Added for getting PORT from environment
+import threading
+import requests
+import time  # for keep-alive ping
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)  # Keep your existing SocketIO setup
+
+# ---------------- Keep-alive thread ----------------
+def keep_alive():
+    while True:
+        try:
+            requests.get("https://chatapp2-6.onrender.com")  # your app URL
+        except:
+            pass
+        time.sleep(1 * 3600)  # every 1 hour
+
+threading.Thread(target=keep_alive, daemon=True).start()
+# ---------------------------------------------------
 
 @app.route('/')
 def index():
